@@ -13,6 +13,22 @@ pipeline {
                 sh 'docker build -t plipka07/jenkins_e2 --build-arg JAR_FILE=target/*.jar .'
             }
         }
+        stage('Network Initialization') {
+            steps {
+                sh 'docker network create e2'
+            }
+        }
+        stage('DB Initialization') {
+            steps {
+                sh 'docker run --name mysql_e2
+                    -e MYSQL_ROOT_PASSWORD=Boomersooner7 \
+                    -e MYSQL_DATABASE=e2 \
+                    -e MYSQL_USER=dev \
+                    -e MYSQL_PASSWORD=Boomersooner7
+                    --network e2 \
+                    mysql:stable'
+            }
+        }
         stage('Run') {
             steps {
                 sh 'docker run --name jenkins_e2 -p 8080:8080 --network e2 plipka07/jenkins_e2'
