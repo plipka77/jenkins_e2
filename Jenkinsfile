@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Network Initialization') {
             steps {
-                sh 'docker network create e2'
+                sh 'docker network create e2 || true'
             }
         }
         stage('DB Initialization') {
