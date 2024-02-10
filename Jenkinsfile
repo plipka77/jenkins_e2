@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Run') {
             steps {
-                sh 'docker run --name jenkins_e2 -p 8080:8080 --network e2 plipka07/jenkins_e2'
+                sh 'docker run --name jenkins_e2 -p 8088:8088 --network e2 plipka07/jenkins_e2'
             }
         }
     }
