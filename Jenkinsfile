@@ -26,7 +26,7 @@ pipeline {
                     -e MYSQL_USER=dev \
                     -e MYSQL_PASSWORD=Boomersooner7 \
                     --network e2 \
-                    mysql:stable'''
+                    mysql'''
             }
         }
         stage('Run') {
