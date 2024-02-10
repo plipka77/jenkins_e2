@@ -25,7 +25,7 @@ pipeline {
                     -e MYSQL_DATABASE=e2 \
                     -e MYSQL_USER=dev \
                     -e MYSQL_PASSWORD=Boomersooner7 \
-                    --network e2 \
+                    --network e2 -d \
                     mysql'''
             }
         }
