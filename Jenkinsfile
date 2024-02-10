@@ -20,6 +20,8 @@ pipeline {
         }
         stage('DB Initialization') {
             steps {
+                sh 'docker stop mysql_e2 || true'
+                sh 'docker rm  mysql_e2 || true'
                 sh '''docker run --name mysql_e2 \
                     -e MYSQL_ROOT_PASSWORD=Boomersooner7 \
                     -e MYSQL_DATABASE=e2 \
@@ -31,6 +33,9 @@ pipeline {
         }
         stage('Run') {
             steps {
+                sh 'docker stop jenkins_e2 || true'
+                sh 'docker rm jenkins_e2 || true'
+                sh 'docker rm jenkins_e2'
                 sh 'docker run --name jenkins_e2 -p 8088:8088 --network e2 plipka07/jenkins_e2'
             }
         }
