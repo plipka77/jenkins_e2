@@ -4,4 +4,4 @@ VOLUME /tmp/e2
 WORKDIR /app
 ARG JAR_FILE
 COPY ${JAR_FILE} ./app.jar
-CMD ["java", "-DMYSQL_HOST=mysql-e2", "-DMYSQL_PORT=3306", "-jar", "app.jar"]
+CMD ["java", "-DMYSQL_HOST=mysql_e2", "-DMYSQL_PORT=3306", "-jar", "app.jar"]
