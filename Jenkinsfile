@@ -20,13 +20,13 @@ pipeline {
         }
         stage('DB Initialization') {
             steps {
-                sh 'docker run --name mysql_e2
+                sh '''docker run --name mysql_e2 \
                     -e MYSQL_ROOT_PASSWORD=Boomersooner7 \
                     -e MYSQL_DATABASE=e2 \
                     -e MYSQL_USER=dev \
-                    -e MYSQL_PASSWORD=Boomersooner7
+                    -e MYSQL_PASSWORD=Boomersooner7 \
                     --network e2 \
-                    mysql:stable'
+                    mysql:stable'''
             }
         }
         stage('Run') {
