@@ -33,6 +33,7 @@ pipeline {
         }
         stage('Run') {
             steps {
+                sh 'hostname -I'
                 sh 'docker stop jenkins_e2 || true'
                 sh 'docker rm jenkins_e2 || true'
                 sh 'docker run --name jenkins_e2 -p 8088:8088 --network e2 -d plipka07/jenkins_e2'
