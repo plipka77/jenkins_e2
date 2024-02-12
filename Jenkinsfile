@@ -4,7 +4,7 @@ pipeline {
         stage('Package') {
             steps {
                 withMaven {
-                    sh 'mvn package -DskipTests'
+                    sh 'mvn install'
                 }
             }
         }
