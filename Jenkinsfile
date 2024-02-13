@@ -34,6 +34,7 @@ pipeline {
                     -e MYSQL_DATABASE=e2 \
                     -e MYSQL_USER=dev \
                     -e MYSQL_PASSWORD=Hello.WORLD88* \
+                    -v /var/lib/jenkins_e2_mysql:/var/lib/mysql \
                     --network e2 -d \
                     mysql'''
                 sh 'scripts/db_test.sh'
