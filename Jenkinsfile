@@ -1,7 +1,15 @@
 pipeline {
     agent any
     stages {
-        stage('Package') {
+        stage("Clean-up") {
+            steps {
+                sh 'docker stop mysql_e2 || true'
+                sh 'docker rm  mysql_e2 || true'
+                sh 'docker stop jenkins_e2 || true'
+                sh 'docker rm jenkins_e2 || true'
+            }
+        }
+        stage('Test/Package') {
             steps {
                 withMaven {
                     sh 'mvn install'
@@ -20,8 +28,6 @@ pipeline {
         }
         stage('DB Initialization') {
             steps {
-                sh 'docker stop mysql_e2 || true'
-                sh 'docker rm  mysql_e2 || true'
                 sh '''docker run --name mysql_e2 \
                     -p 3309:3306 \
                     -e MYSQL_ROOT_PASSWORD=Hello.WORLD88* \
@@ -35,9 +41,6 @@ pipeline {
         }
         stage('Run') {
             steps {
-                sh 'hostname -I'
-                sh 'docker stop jenkins_e2 || true'
-                sh 'docker rm jenkins_e2 || true'
                 sh 'docker run --name jenkins_e2 -p 8088:8088 --network e2 -d plipka07/jenkins_e2'
             }
         }
