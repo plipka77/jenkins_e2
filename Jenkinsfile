@@ -29,6 +29,7 @@ pipeline {
                     -e MYSQL_PASSWORD=Hello.WORLD88* \
                     --network e2 -d \
                     mysql'''
+                sh 'scripts/db_test.sh'
             }
         }
         stage('Run') {
